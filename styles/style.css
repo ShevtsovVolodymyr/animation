@@ -13,11 +13,6 @@
 #animation {
   width: 100%;
   height: 100%;
-}
-
-.animation__scene {
-  width: 100%;
-  height: 100%;
   position: relative;
   overflow: hidden;
 }
@@ -26,7 +21,7 @@
   position: absolute;
 }
 
-.item__stone {
+/* .item__stone {
   display: none;
   width: 5%;
   height: 5%;
@@ -69,7 +64,7 @@
 }
 .item__stone--3 .item__stone--inner {
   background-image: url(/assets/shared/stone.svg);
-}
+} */
 
 .animation__rockets {
   left: 0;
@@ -192,49 +187,24 @@
 .item__frame--start {
   top: 0;
 }
-.item__frame--1,
-.item__frame--2,
-.item__frame--3,
-.item__frame--4,
-.item__frame--5,
-.item__frame--6,
-.item__frame--7,
+
+.item__frame--start {
+  background-image: url('/assets/frames/preset1/start.svg');
+}
 .item__frame--end {
   top: -100%;
-}
-.item__frame--start {
-  /* background-image: url(/assets/frames/preset1/start.svg); */
-}
-.item__frame--end {
-  /* background-image: url(/assets/frames/preset1/end.svg); */
+  background-image: url('/assets/frames/preset1/end.svg');
 }
 .item__frame--1 {
-  /* background-image: url(/assets/frames/preset1/1.svg); */
+  top: -100%;
+  background-image: url('/assets/frames/preset1/1.svg');
 }
 .item__frame--2 {
+  top: 0%;
   animation-delay: 6s;
-  /* background-image: url(/assets/frames/preset1/2.svg); */
+  background-image: url('/assets/frames/preset1/2.svg');
 }
-.item__frame--3 {
-  animation-delay: 12s;
-  /* background-image: url(/assets/frames/preset1/3.svg); */
-}
-.item__frame--4 {
-  animation-delay: 18s;
-  /* background-image: url(/assets/frames/preset1/4.svg); */
-}
-.item__frame--5 {
-  animation-delay: 24s;
-  /* background-image: url(/assets/frames/preset1/5.svg); */
-}
-.item__frame--6 {
-  animation-delay: 30s;
-  /* background-image: url(/assets/frames/preset1/6.svg); */
-}
-.item__frame--7 {
-  animation-delay: 36s;
-  /* background-image: url(/assets/frames/preset1/7.svg); */
-}
+
 .animate--once {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;

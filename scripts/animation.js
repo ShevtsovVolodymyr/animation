@@ -117,7 +117,7 @@ class Animator extends StorageController {
     console.log('Animation started at: ', new Date());
     setTimeout(() => {
       this.stopComets();
-      this.stopStones();
+      // this.stopStones();
       this.frameEnd.classList.add('animate', 'animate--once');
       this.planet.classList.add('appear');
       this.rockets.forEach(rocket =>
@@ -132,8 +132,8 @@ class Animator extends StorageController {
     [...document.querySelectorAll('.item__frame--filler')].forEach(frame =>
       frame.classList.add('animate')
     );
-    // this.frameFiller1.classList.add('animate');
-    // this.frameFiller2.classList.add('animate');
+    this.frameFiller1.classList.add('animate');
+    this.frameFiller2.classList.add('animate');
   }
   startRockets() {
     this.rocketContainers.forEach(rocket =>
@@ -164,7 +164,6 @@ class Animator extends StorageController {
       seconds = seconds < 10 ? '0' + seconds : seconds;
       const minTxt = document.querySelector('.clock-time--min');
       const secTxt = document.querySelector('.clock-time--sec');
-      // const colon = document.querySelector('.clock__colon');
       minTxt.innerHTML = minutes;
       secTxt.innerHTML = seconds;
       if (distance < 0) {
