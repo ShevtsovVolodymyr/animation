@@ -23,22 +23,22 @@ const elComets = [...document.querySelectorAll('.item__comet')];
 
 //Rocket images - array of image sorces
 const ROCKET_IMAGES = [
-  '/assets/rockets/rocket-1.svg',
-  '/assets/rockets/rocket-1.svg',
-  '/assets/rockets/rocket-1.svg',
-  '/assets/rockets/rocket-1.svg',
-  '/assets/rockets/rocket-1.svg',
-  '/assets/rockets/rocket-1.svg',
+  'assets/rockets/rocket-1.svg',
+  'assets/rockets/rocket-1.svg',
+  'assets/rockets/rocket-1.svg',
+  'assets/rockets/rocket-1.svg',
+  'assets/rockets/rocket-1.svg',
+  'assets/rockets/rocket-1.svg',
 ];
 
 // Presets of assets
 const PRESETS = {
   preset1: {
-    frameStart: '/assets/frames/preset1/start.svg',
-    frameEnd: '/assets/frames/preset1/6.svg',
-    frameFiller: '/assets/frames/preset1/5.svg',
-    backScroll: '/assets/frames/preset1/back.svg',
-    planet: '/assets/planets/venus.svg',
+    frameStart: 'assets/frames/preset1/start.svg',
+    frameEnd: 'assets/frames/preset1/6.svg',
+    frameFiller: 'assets/frames/preset1/5.svg',
+    backScroll: 'assets/frames/preset1/back.svg',
+    planet: 'assets/planets/venus.svg',
   },
 };
 
