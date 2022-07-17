@@ -1,18 +1,22 @@
 /* DECLARE ELEMENTS */
+
 // Frames
 const elFrameStart = document.getElementById('frameStart');
 const elFrameEnd = document.getElementById('frameEnd');
 const elFrameFiller1 = document.getElementById('frameFiller1');
 const elFrameFiller2 = document.getElementById('frameFiller2');
+const elBackScroll = document.getElementById('frameBack');
 
 //Rockets
-const elRockets = [...document.querySelectorAll('.item__rocket--inner')];
+const elRocketStarters = document.getElementById('rocketStarters');
+const elRocketContainer = document.getElementById('rocketContainer');
+const elRockets = [...document.querySelectorAll('.item__rocket')];
 
 //Planet
 const elPlanet = document.querySelector('.item__planet');
 
 //Stones
-const elStones = [...document.querySelectorAll('.item__stone')];
+// const elStones = [...document.querySelectorAll('.item__stone')];
 
 //Comets
 const elComets = [...document.querySelectorAll('.item__comet')];
@@ -22,21 +26,20 @@ const ROCKET_IMAGES = [
   '/assets/rockets/rocket-1.svg',
   '/assets/rockets/rocket-1.svg',
   '/assets/rockets/rocket-1.svg',
+  '/assets/rockets/rocket-1.svg',
+  '/assets/rockets/rocket-1.svg',
+  '/assets/rockets/rocket-1.svg',
 ];
 
 // Presets of assets
 const PRESETS = {
   preset1: {
-    frameStart: '/assets/frames/preset1/start.jpeg',
-    frameEnd: '/assets/frames/preset1/start.jpeg',
-    frameFiller: '/assets/frames/preset1/filler.jpeg',
+    frameStart: '/assets/frames/preset1/start.svg',
+    frameEnd: '/assets/frames/preset1/6.svg',
+    frameFiller: '/assets/frames/preset1/5.svg',
+    backScroll: '/assets/frames/preset1/back.svg',
     planet: '/assets/planets/venus.svg',
   },
-};
-
-const ANIMATION_TIMINGS = {
-  END: 6,
-  BEFORE_END: 12,
 };
 
 class StorageController {
@@ -63,8 +66,10 @@ class Animator extends StorageController {
   frameFiller1 = elFrameFiller1;
   frameFiller2 = elFrameFiller2;
   frameEnd = elFrameEnd;
+  backScroll = elBackScroll;
+  rocketStarters = elRocketStarters;
   rockets = elRockets;
-  rocketContainers = this.rockets.map(rocket => rocket.parentElement);
+  rocketContainer = elRocketContainer;
   comets = elComets;
   planet = elPlanet;
   interval = null;
@@ -78,11 +83,11 @@ class Animator extends StorageController {
   }
 
   init() {
-    // if (this.isAnimationStarted) {
-    //   this.setFrames(false);
-    // } else {
-    //   this.setFrames(true);
-    // }
+    if (this.isAnimationStarted) {
+      this.setFrames(false);
+    } else {
+      this.setFrames(true);
+    }
     this.setRockets();
 
     return this;
@@ -100,12 +105,16 @@ class Animator extends StorageController {
     this.startCountdown();
   }
   setFrames(isNewAnimation) {
+    if (!isNewAnimation) {
+      this.rocketStarters.style.display = 'none';
+    }
     this.frameStart.style.backgroundImage = isNewAnimation
       ? `url(${this.preset.frameStart})`
       : `url(${this.preset.frameFiller})`;
     this.frameFiller1.style.backgroundImage = `url(${this.preset.frameFiller})`;
     this.frameFiller2.style.backgroundImage = `url(${this.preset.frameFiller})`;
     this.frameEnd.style.backgroundImage = `url(${this.preset.frameEnd})`;
+    this.backScroll.style.backgroundImage = `url(${this.preset.backScroll})`;
     this.planet.style.backgroundImage = `url(${this.preset.planet})`;
   }
   setRockets() {
@@ -120,9 +129,6 @@ class Animator extends StorageController {
       // this.stopStones();
       this.frameEnd.classList.add('animate', 'animate--once');
       this.planet.classList.add('appear');
-      this.rockets.forEach(rocket =>
-        rocket.classList.add('scale-down-dissapear')
-      );
       console.log('Animation ended at: ', new Date());
       this.clearSaved();
     }, this.duration - 12000);
@@ -136,9 +142,10 @@ class Animator extends StorageController {
     this.frameFiller2.classList.add('animate');
   }
   startRockets() {
-    this.rocketContainers.forEach(rocket =>
-      rocket.classList.add('animate-rocket')
-    );
+    this.rocketContainer.classList.add('start');
+    setTimeout(() => {
+      this.rockets.forEach(rocket => rocket.classList.add('animate-rocket'));
+    }, 1500);
   }
   stopComets() {
     this.comets.forEach(comet => comet.classList.add('animate--once'));
@@ -176,4 +183,4 @@ class Animator extends StorageController {
 }
 
 const animate = new Animator(ROCKET_IMAGES, PRESETS.preset1, 60000);
-animate.init();
+animate.init().start();
