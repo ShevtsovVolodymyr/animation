@@ -69,28 +69,45 @@
 
 .animation__rockets {
   left: 0;
-  bottom: 210px;
+  bottom: var(--rockets-bottom-pos, 180px);
   height: 200px;
   width: 100%;
   display: flex;
-  padding-left: 12%;
-  padding-right: 5%;
+  padding-left: 3%;
+  padding-right: 8%;
   justify-content: space-between;
+}
+.preset1 .animation__rockets {
+  --rockets-bottom-pos: 180px;
+}
+
+@media (max-width: 1440px) {
+  .preset1 .animation__rockets {
+    --rockets-bottom-pos: 146px;
+  }
 }
 
 .animation__rockets.start {
-  animation: slide-up 3s linear forwards;
+  animation: slide-up 4s linear forwards;
 }
 
 .rockets__starters {
   position: absolute;
   width: 90%;
-  left: 5%;
-  bottom: 200px;
+  left: 8%;
+  bottom: var(--starters-bottom-pos, 180px);
+}
+.preset1 .rockets__starters {
+  --starters-bottom-pos: 180px;
+}
+@media (max-width: 1440px) {
+  .preset1 .rockets__starters {
+    --starters-bottom-pos: 146px;
+  }
 }
 
 .item__rocket {
-  width: 5%;
+  width: 10%;
   animation-duration: 3s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
@@ -163,18 +180,17 @@
 }
 
 .item__planet {
-  border-radius: 50%;
-  aspect-ratio: 1 / 1;
-  width: 50%;
-  left: 50%;
-  top: -60%;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: -100%;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
 }
 
 .item__planet.appear {
-  animation: slide-scale-up 6s ease 1 forwards 6s;
+  animation: slide-scale-up 9s linear 1 forwards;
 }
 
 .item__frame {
@@ -207,6 +223,7 @@
   top: -500%;
   width: 100%;
   height: 500%;
+  background-size: cover;
   background-repeat: repeat-y;
   animation: slide-down 60s infinite linear;
 }
@@ -234,6 +251,10 @@
   width: 100%;
   height: 40px;
   font-size: 40px;
+  transition: all 1s ease;
+}
+.clock--fade {
+  opacity: 0;
 }
 .clock__colon {
   animation: secAnimation 1s infinite;
@@ -260,16 +281,19 @@
 }
 
 @keyframes bounce {
-  0%,
-  50%,
-  100% {
-    -webkit-transform: translateY(0);
+  0% {
+    transform: translateY(0);
   }
   25% {
-    -webkit-transform: translateY(-80%);
+    transform: translateY(-50%);
   }
-  75% {
-    -webkit-transform: translateY(80%);
+  50% {
+    transform: translateY(-100%);
+  }
+  60% {
+  }
+  90% {
+    transform: translateY(20%);
   }
 }
 
@@ -296,26 +320,25 @@
 
 @keyframes slide-up {
   0% {
+    transform: translateY(0);
   }
-
+  30% {
+    transform: translateY(-20%);
+  }
   100% {
-    transform: translateY(-100%);
+    transform: translateY(0);
   }
 }
 
 @keyframes slide-scale-up {
   0% {
+    transform: translateY(0) scale(1);
   }
-  25% {
-    transform: scale(1);
+  75% {
+    transform: translateY(100%) scale(1);
   }
-  50% {
-    top: 0;
-  }
-
   100% {
-    top: 20%;
-    transform: scale(6);
+    transform: translateY(100%) scale(4.5);
   }
 }
 

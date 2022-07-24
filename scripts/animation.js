@@ -13,7 +13,7 @@ const elRocketContainer = document.getElementById('rocketContainer');
 const elRockets = [...document.querySelectorAll('.item__rocket')];
 
 //Planet
-const elPlanet = document.querySelector('.item__planet');
+const elPlanet = document.getElementById('planetContainer');
 
 //Stones
 // const elStones = [...document.querySelectorAll('.item__stone')];
@@ -21,24 +21,29 @@ const elPlanet = document.querySelector('.item__planet');
 //Comets
 const elComets = [...document.querySelectorAll('.item__comet')];
 
+// Clock
+const elMin = document.getElementById('minContainer');
+const elSec = document.getElementById('secContainer');
+
 //Rocket images - array of image sorces
 const ROCKET_IMAGES = [
-  'assets/rockets/rocket-1.svg',
-  'assets/rockets/rocket-1.svg',
-  'assets/rockets/rocket-1.svg',
-  'assets/rockets/rocket-1.svg',
-  'assets/rockets/rocket-1.svg',
-  'assets/rockets/rocket-1.svg',
+  'assets/rockets/1.svg',
+  'assets/rockets/2.svg',
+  'assets/rockets/1.svg',
+  'assets/rockets/1.svg',
+  'assets/rockets/2.svg',
+  'assets/rockets/2.svg',
 ];
 
 // Presets of assets
 const PRESETS = {
   preset1: {
+    id: 'preset1',
     frameStart: 'assets/frames/preset1/start.svg',
-    frameEnd: 'assets/frames/preset1/6.svg',
-    frameFiller: 'assets/frames/preset1/5.svg',
+    frameEnd: 'assets/frames/preset1/end.svg',
+    frameFiller: 'assets/frames/preset1/center.svg',
     backScroll: 'assets/frames/preset1/back.svg',
-    planet: 'assets/planets/venus.svg',
+    planet: 'assets/planets/1.svg',
   },
 };
 
@@ -73,6 +78,8 @@ class Animator extends StorageController {
   comets = elComets;
   planet = elPlanet;
   interval = null;
+  min = elMin;
+  sec = elSec;
   clockInterval = null;
 
   constructor(rocketImages, preset, duration) {
@@ -105,6 +112,7 @@ class Animator extends StorageController {
     this.startCountdown();
   }
   setFrames(isNewAnimation) {
+    this.frameFiller1.parentElement.classList.add(this.preset.id);
     if (!isNewAnimation) {
       this.rocketStarters.style.display = 'none';
     }
@@ -131,7 +139,7 @@ class Animator extends StorageController {
       this.planet.classList.add('appear');
       console.log('Animation ended at: ', new Date());
       this.clearSaved();
-    }, this.duration - 12000);
+    }, this.duration - 9000);
   }
   startFrames() {
     this.frameStart.classList.add('animate', 'animate--once');
@@ -169,18 +177,18 @@ class Animator extends StorageController {
       let seconds = Math.floor((distance % (1000 * 60)) / 1000);
       minutes = minutes < 10 ? '0' + minutes : minutes;
       seconds = seconds < 10 ? '0' + seconds : seconds;
-      const minTxt = document.querySelector('.clock-time--min');
-      const secTxt = document.querySelector('.clock-time--sec');
-      minTxt.innerHTML = minutes;
-      secTxt.innerHTML = seconds;
+
+      this.min.innerText = minutes;
+      this.sec.innerText = seconds;
       if (distance < 0) {
         clearInterval(this.clockInterval);
-        minTxt.innerHTML = '00';
-        secTxt.innerHTML = '00';
+        this.min.innerText = '00';
+        this.sec.innerText = '00';
+        this.min.parentElement.classList.add('clock--fade');
       }
     }, 1000);
   }
 }
 
-const animate = new Animator(ROCKET_IMAGES, PRESETS.preset1, 60000);
+const animate = new Animator(ROCKET_IMAGES, PRESETS.preset1, 30000);
 animate.init().start();
