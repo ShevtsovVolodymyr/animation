@@ -1,0 +1,78 @@
+<style>
+  .main-container {
+    position: relative;
+    width: 100%;
+    max-width: 1440px;
+    height: 600px;
+    max-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+  }
+
+  .starters {
+    position: absolute;
+    width: 90%;
+    left: 8%;
+    bottom: var(--starters-bottom-pos, 180px);
+  }
+
+  .rockets-container {
+    left: 0;
+    bottom: var(--rockets-bottom-pos, 180px);
+    height: 200px;
+    width: 100%;
+    display: flex;
+    padding-left: 3%;
+    padding-right: 8%;
+    justify-content: space-between;
+  }
+
+  .rocket {
+    width: 10%;
+    background-size: contain;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+  }
+
+  /* Якщо положення стартерів на різних стартових фреймах різне по висоті,
+тоді можна додати динамічний класс до контейнера і дописати іншу висоту.
+Якщо висота стартерів на усіх початкових фреймах однакова, то не потрібно.
+Наприклад:
+
+.preset1 .starters {
+  --starters-bottom-pos: 180px;
+} 
+
+.preset1 .rockets-container {
+  --rockets-bottom-pos: 180px;
+} */
+
+  @media (max-width: 1440px) {
+    .rockets-container {
+      --rockets-bottom-pos: 146px;
+    }
+  }
+
+  @media (max-width: 1440px) {
+    .starters {
+      --starters-bottom-pos: 146px;
+    }
+  }
+</style>
+<!-- Тут підставляєм бек в контейнер(стартовий фрейм) як бек -->
+<div class="main-container">
+  <div class="starters">
+    <!-- Тут підставляєм статичний шлях до картинки стартерів (є в папці з анімацією) -->
+    <img src="assets/shared/starters.svg" alt="" class="starters__image" />
+  </div>
+  <div class="rockets-container">
+    <!-- Тут підставляєм бек в кожну ракету як бек -->
+    <div class="rocket"></div>
+    <div class="rocket"></div>
+    <div class="rocket"></div>
+    <div class="rocket"></div>
+    <div class="rocket"></div>
+    <div class="rocket"></div>
+  </div>
+</div>

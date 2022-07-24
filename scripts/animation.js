@@ -1,5 +1,26 @@
-/* DECLARE ELEMENTS */
+//Rocket images - might be dynamic on prod
+const ROCKET_IMAGES = [
+  'assets/rockets/1.svg',
+  'assets/rockets/2.svg',
+  'assets/rockets/1.svg',
+  'assets/rockets/1.svg',
+  'assets/rockets/2.svg',
+  'assets/rockets/2.svg',
+];
 
+/* DECLARE STATIC ASSETS PRESETS */
+const PRESETS = {
+  preset1: {
+    id: 'preset1',
+    frameStart: 'assets/frames/preset1/start.svg',
+    frameEnd: 'assets/frames/preset1/end.svg',
+    frameFiller: 'assets/frames/preset1/center.svg',
+    backScroll: 'assets/frames/preset1/back.png',
+    planet: 'assets/planets/1.svg',
+  },
+};
+
+/* DECLARE ELEMENTS */
 // Frames
 const elFrameStart = document.getElementById('frameStart');
 const elFrameEnd = document.getElementById('frameEnd');
@@ -15,9 +36,6 @@ const elRockets = [...document.querySelectorAll('.item__rocket')];
 //Planet
 const elPlanet = document.getElementById('planetContainer');
 
-//Stones
-// const elStones = [...document.querySelectorAll('.item__stone')];
-
 //Comets
 const elComets = [...document.querySelectorAll('.item__comet')];
 
@@ -25,28 +43,9 @@ const elComets = [...document.querySelectorAll('.item__comet')];
 const elMin = document.getElementById('minContainer');
 const elSec = document.getElementById('secContainer');
 
-//Rocket images - array of image sorces
-const ROCKET_IMAGES = [
-  'assets/rockets/1.svg',
-  'assets/rockets/2.svg',
-  'assets/rockets/1.svg',
-  'assets/rockets/1.svg',
-  'assets/rockets/2.svg',
-  'assets/rockets/2.svg',
-];
+/* CONTROLLERS */
 
-// Presets of assets
-const PRESETS = {
-  preset1: {
-    id: 'preset1',
-    frameStart: 'assets/frames/preset1/start.svg',
-    frameEnd: 'assets/frames/preset1/end.svg',
-    frameFiller: 'assets/frames/preset1/center.svg',
-    backScroll: 'assets/frames/preset1/back.svg',
-    planet: 'assets/planets/1.svg',
-  },
-};
-
+//save & get duration from storage
 class StorageController {
   saveStartTime() {
     localStorage.setItem('animation-started-at', JSON.stringify(Date.now()));
@@ -66,6 +65,15 @@ class StorageController {
   }
 }
 
+/* ANIMATION CONTROLLER */
+
+// set presets
+// args - String[](rocket assets paths), PRESET(Current preset), Number(ms)
+// const animate = new Animator(ROCKET_IMAGES, PRESETS.preset1, 30000);
+
+// animate.init().start();
+// init - inject assets
+// start - start animation
 class Animator extends StorageController {
   frameStart = elFrameStart;
   frameFiller1 = elFrameFiller1;
@@ -108,7 +116,6 @@ class Animator extends StorageController {
     this.setEnding();
     this.startFrames();
     this.startRockets();
-    // this.startStones();
     this.startCountdown();
   }
   setFrames(isNewAnimation) {
@@ -134,7 +141,6 @@ class Animator extends StorageController {
     console.log('Animation started at: ', new Date());
     setTimeout(() => {
       this.stopComets();
-      // this.stopStones();
       this.frameEnd.classList.add('animate', 'animate--once');
       this.planet.classList.add('appear');
       console.log('Animation ended at: ', new Date());
@@ -158,16 +164,6 @@ class Animator extends StorageController {
   stopComets() {
     this.comets.forEach(comet => comet.classList.add('animate--once'));
   }
-  // startStones() {
-  //   const interval = setInterval(() => {
-  //     this.stones.forEach(stone => stone.classList.toggle('animate'));
-  //   }, 4850);
-  //   this.interval = interval;
-  // }
-  stopStones() {
-    this.stones.forEach(stone => stone.classList.add('animate--once'));
-    clearInterval(this.interval);
-  }
   startCountdown() {
     const contdownTo = new Date(Date.now() + this.duration);
     this.clockInterval = setInterval(() => {
@@ -190,5 +186,5 @@ class Animator extends StorageController {
   }
 }
 
-const animate = new Animator(ROCKET_IMAGES, PRESETS.preset1, 30000);
+const animate = new Animator(ROCKET_IMAGES, PRESETS.preset1, 60000);
 animate.init().start();

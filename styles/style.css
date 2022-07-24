@@ -15,57 +15,11 @@
   height: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #8b2ba0;
 }
 
 .animation__item {
   position: absolute;
 }
-
-/* .item__stone {
-  display: none;
-  width: 5%;
-  height: 5%;
-  min-width: 40px;
-  min-height: 40px;
-}
-
-.item__stone--inner {
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.item__stone.animate {
-  display: block;
-  animation: scale-spiral 5s linear forwards;
-}
-.item__stone.animate > .item__stone--inner {
-  animation: rotating 2s linear infinite;
-}
-
-.item__stone--1 {
-  top: 10%;
-  left: 10%;
-}
-.item__stone--1 .item__stone--inner {
-  background-image: url(/assets/shared/stone-1.svg);
-}
-.item__stone--2 {
-  top: 80%;
-  left: 80%;
-}
-.item__stone--2 .item__stone--inner {
-  background-image: url(/assets/shared/stone-2.svg);
-}
-.item__stone--3 {
-  top: 70%;
-  left: 35%;
-}
-.item__stone--3 .item__stone--inner {
-  background-image: url(/assets/shared/stone.svg);
-} */
 
 .animation__rockets {
   left: 0;
@@ -77,6 +31,7 @@
   padding-right: 8%;
   justify-content: space-between;
 }
+
 .preset1 .animation__rockets {
   --rockets-bottom-pos: 180px;
 }
@@ -97,9 +52,11 @@
   left: 8%;
   bottom: var(--starters-bottom-pos, 180px);
 }
+
 .preset1 .rockets__starters {
   --starters-bottom-pos: 180px;
 }
+
 @media (max-width: 1440px) {
   .preset1 .rockets__starters {
     --starters-bottom-pos: 146px;
@@ -123,17 +80,19 @@
 .item__rocket--1 {
   animation-delay: 0.6s;
 }
+
 .item__rocket--2 {
   animation-delay: 1.2s;
 }
-.item__rocket--3 {
-}
+
 .item__rocket--4 {
   animation-delay: 1s;
 }
+
 .item__rocket--5 {
   animation-delay: 1.3s;
 }
+
 .item__rocket--6 {
   animation-delay: 0.9s;
 }
@@ -144,6 +103,7 @@
   min-width: 20px;
   aspect-ratio: 1/1;
 }
+
 .item__comet--1 {
   --top-start: 100%;
   --left-start: 20%;
@@ -151,9 +111,11 @@
   --left-end: 100%;
   animation: slide-45 4s ease-in-out infinite 9s;
 }
+
 .item__comet--1 > img {
   transform: rotate(160deg);
 }
+
 .item__comet--2 {
   --top-start: -100%;
   --left-start: 100%;
@@ -165,9 +127,11 @@
 .item__comet--3 {
   animation: slide-45 6s ease-in-out infinite 9s;
 }
+
 .item__comet--3 > img {
   transform: rotate(275deg);
 }
+
 .item__comet--4 {
   --top-start: -100%;
   --left-start: 0;
@@ -175,6 +139,7 @@
   --left-end: 20%;
   animation: slide-45 4s ease-in-out infinite 9s;
 }
+
 .item__comet--4 > img {
   transform: rotate(310deg);
 }
@@ -209,16 +174,21 @@
   top: 0;
   background-position-y: bottom;
 }
+
 .item__frame--end {
   top: -100%;
 }
+
 .item__frame--1 {
   top: -100%;
+  height: calc(100% + 1px);
 }
+
 .item__frame--2 {
   top: 0;
   animation-delay: 6s;
 }
+
 .item__background {
   top: -500%;
   width: 100%;
@@ -236,12 +206,12 @@
 .animate--stop {
   animation: none !important;
 }
+
 .scale-down-dissapear {
   animation: scale-down-dissapear 3s linear forwards 3s;
 }
 
 /* clock styles here  */
-
 .clock {
   font-family: 'Orbitron', sans-serif;
   color: var(--clockColor);
@@ -253,9 +223,11 @@
   font-size: 40px;
   transition: all 1s ease;
 }
+
 .clock--fade {
   opacity: 0;
 }
+
 .clock__colon {
   animation: secAnimation 1s infinite;
 }
