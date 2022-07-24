@@ -60,7 +60,7 @@ class StorageController {
     const startTime = +JSON.parse(localStorage.getItem('animation-started-at'));
     const timeNow = Date.now();
     const remainingTime = duration - (timeNow - startTime);
-
+    console.log(remainingTime);
     return remainingTime;
   }
 }
@@ -109,7 +109,10 @@ class Animator extends StorageController {
   }
   start() {
     if (this.isAnimationStarted) {
-      this.duration = this.remainingAnimationTime(this.duration);
+      const newDuration = this.remainingAnimationTime(this.duration);
+      if (!!~newDuration) {
+        this.duration = newDuration;
+      }
     } else {
       this.saveStartTime();
     }
