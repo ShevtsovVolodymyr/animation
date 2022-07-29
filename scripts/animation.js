@@ -12,10 +12,10 @@ const ROCKET_IMAGES = [
 const PRESETS = {
   preset1: {
     id: 'preset1',
-    frameStart: 'assets/frames/preset1/start.svg',
-    frameEnd: 'assets/frames/preset1/end.svg',
-    frameFiller: 'assets/frames/preset1/center.svg',
-    backScroll: 'assets/frames/preset1/back.png',
+    frameStart: 'assets/frames/preset1/start_1.svg',
+    frameEnd: 'assets/frames/preset1/end_1.svg',
+    frameFiller: 'assets/frames/preset1/center_1.svg',
+    backScroll: 'assets/frames/preset1/back_1.png',
     planet: 'assets/planets/1.svg',
   },
 };
@@ -183,7 +183,7 @@ class Animator extends StorageController {
         clearInterval(this.clockInterval);
         this.min.innerText = '00';
         this.sec.innerText = '00';
-        this.min.parentElement.classList.add('clock--fade');
+        this.min.parentElement.classList.add('clock--stop');
       }
     }, 1000);
   }
