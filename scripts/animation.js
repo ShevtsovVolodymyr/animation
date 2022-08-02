@@ -18,6 +18,14 @@ const PRESETS = {
     backScroll: 'assets/frames/preset1/back_1.png',
     planet: 'assets/planets/1.svg',
   },
+  preset5: {
+    id: 'preset5',
+    frameStart: 'assets/frames/preset5/start.svg',
+    frameEnd: 'assets/frames/preset5/end.svg',
+    frameFiller: 'assets/frames/preset5/center.svg',
+    backScroll: 'assets/frames/preset5/back.png',
+    planet: 'assets/planets/5.svg',
+  },
 };
 
 /* DECLARE ELEMENTS */
@@ -189,5 +197,5 @@ class Animator extends StorageController {
   }
 }
 
-const animate = new Animator(ROCKET_IMAGES, PRESETS.preset1, 60000);
+const animate = new Animator(ROCKET_IMAGES, PRESETS.preset5, 720000);
 animate.init().start();

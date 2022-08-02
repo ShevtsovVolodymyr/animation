@@ -189,13 +189,13 @@
 }
 
 .item__background {
-  top: -500%;
+  top: -4200px;
   width: 100%;
-  height: 500%;
+  height: 4200px;
   background-size: cover;
   background-position: bottom;
   background-repeat: repeat-y;
-  animation: slide-down 60s infinite linear;
+  animation: slide-down-back 60s infinite linear 2s;
 }
 
 .animate--once {
@@ -318,9 +318,16 @@
 @keyframes slide-down {
   0% {
   }
-
   100% {
     transform: translateY(100%);
+  }
+}
+
+@keyframes slide-down-back {
+  0% {
+  }
+  100% {
+    transform: translateY(4800px);
   }
 }
 
